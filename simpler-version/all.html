@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Profile Card — HNG stage0.</title>
+  <style>
+    :root {
+      --bg: #f7f7fb;
+      --text: #111827;
+      --muted: #4b5563;
+      --card: #ffffff;
+      --line: #e5e7eb;
+      --brand: #2563eb;
+      --focus: #3b82f6;
+      --radius: 14px;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial;
+      background: var(--bg);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      padding: 20px;
+    }
+    article.profile-card {
+      width: min(900px, 100%);
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 24px rgba(17, 24, 39, 0.06);
+      overflow: hidden;
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+      background: #f9fafb;
+    }
+    .card-title { font-size: 1.05rem; font-weight: 700; margin: 0; }
+    .helper { margin-left: auto; font-size: .9rem; color: var(--muted); }
+    .time { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--brand); }
+    .wrap { display: grid; gap: 18px; padding: 18px; }
+    @media (min-width: 760px) { .wrap { grid-template-columns: 280px 1fr; } }
+    figure { margin: 0; }
+    .avatar {
+      width: 220px;
+      max-width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 999px;
+      display: block;
+      border: 1px solid var(--line);
+    }
+    .controls { margin-top: 12px; display: grid; gap: 10px; }
+    .label { font-weight: 600; font-size: .95rem; }
+    input[type="url"], input[type="file"], .btn { font: inherit; }
+    input[type="url"] {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+    }
+    input[type="file"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px dashed var(--line);
+      border-radius: 10px;
+      background: #fff;
+    }
+    .btn {
+      cursor: pointer;
+      width: max-content;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--brand);
+      background: var(--brand);
+      color: #fff;
+      font-weight: 600;
+    }
+    .hint { font-size: .85rem; color: var(--muted); }
+    .name { font-size: clamp(1.3rem, 2.2vw, 1.6rem); font-weight: 800; margin: 0 0 4px; }
+    .bio { margin: 0; color: var(--muted); }
+    nav[aria-label="Social links"] { margin-top: 14px; }
+    nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+    nav a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--brand);
+      border: 1px solid var(--line);
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #fff;
+    }
+    .sections { display: grid; gap: 16px; margin-top: 8px; }
+    section.list { border: 1px solid var(--line); border-radius: 12px; padding: 12px; background: #fff; }
+    section.list h3 { margin: .1rem 0 .3rem; font-size: .95rem; }
+    ul.items { margin: 0; padding-left: 20px; }
+    :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <article class="profile-card" data-testid="test-profile-card" aria-labelledby="person-name" aria-describedby="person-bio">
+    <header class="card-header">
+      <h1 class="card-title">Profile Card</h1>
+      <div class="helper">Current time (ms): <span class="time" id="now-ms" data-testid="test-user-time" aria-live="polite"></span></div>
+    </header>
+
+    <div class="wrap">
+      <div>
+        <figure>
+          <img id="avatar" class="avatar" data-testid="test-user-avatar" src="https://avatars.githubusercontent.com/u/583231?v=4" alt="User avatar" />
+        </figure>
+        <div class="controls" aria-label="Avatar controls">
+          <div class="label">Avatar</div>
+          <input id="avatar-url" type="url" inputmode="url" placeholder="Paste image URL" aria-label="Avatar image URL" />
+          <input id="avatar-file" type="file" accept="image/*" aria-label="Upload avatar image" />
+          <button class="btn" id="apply-avatar">Use Image</button>
+          <div class="hint">Tip: paste a direct image link or choose a file. The image will display as a URL.</div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="name" id="person-name" data-testid="test-user-name">Victor E.</h2>
+        <p class="bio" id="person-bio" data-testid="test-user-bio">Creative full‑stack developer and UI designer focused on building intuitive web experiences with simplicity and precision.</p>
+
+        <nav aria-label="Social links">
+          <div class="label" style="margin-bottom:6px">Social</div>
+          <ul data-testid="test-user-social-links">
+            <li><a href="https://linkedin.com/in/emkajnr" target="_blank" rel="noopener noreferrer" data-testid="test-user-social-linkedin">LinkedIn</a></li>
+            <li><a href="https://x.com/victorbjay" target="_blank" rel="noopener noreferrer" data-testid="test-user-social-twitter">Twitter / X</a></li>
+            <li><a href="https://github.com/victorbjay" target="_blank" rel="noopener noreferrer" data-testid="test-user-social-github">GitHub</a></li>
+            <li><a href="mailto:okpevictor84@gmail.com" target="_blank" rel="noopener noreferrer" data-testid="test-user-social-email">Email</a></li>
+          </ul>
+        </nav>
+
+        <div class="sections">
+          <section class="list" aria-labelledby="hobbies-title">
+            <h3 id="hobbies-title">Hobbies</h3>
+            <ul class="items" data-testid="test-user-hobbies">
+              <li>UI design exploration</li>
+              <li>Open-source collaboration</li>
+              <li>Fitness and travel</li>
+            </ul>
+          </section>
+
+          <section class="list" aria-labelledby="dislikes-title">
+            <h3 id="dislikes-title">Dislikes</h3>
+            <ul class="items" data-testid="test-user-dislikes">
+              <li>Poor accessibility</li>
+              <li>Overly complex code</li>
+              <li>Slow interfaces</li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <script>
+    const timeEl = document.getElementById('now-ms');
+    const tick = () => { timeEl.textContent = String(Date.now()); };
+    tick();
+    setInterval(tick, 500);
+
+    const avatarImg = document.getElementById('avatar');
+    const urlInput = document.getElementById('avatar-url');
+    const fileInput = document.getElementById('avatar-file');
+    const applyBtn = document.getElementById('apply-avatar');
+
+    function setAvatarFromUrl(url) {
+      if (!url) return;
+      try { avatarImg.src = new URL(url, window.location.href).href; }
+      catch { alert('Please provide a valid image URL.'); }
+    }
+
+    function setAvatarFromFile(file) {
+      if (!file) return;
+      const objectUrl = URL.createObjectURL(file);
+      avatarImg.src = objectUrl;
+      avatarImg.onload = () => URL.revokeObjectURL(objectUrl);
+    }
+
+    applyBtn.addEventListener('click', () => {
+      if (fileInput.files && fileInput.files[0]) setAvatarFromFile(fileInput.files[0]);
+      else if (urlInput.value.trim() !== '') setAvatarFromUrl(urlInput.value.trim());
+      else alert('Add a URL or choose a file first.');
+    });
+
+    urlInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); applyBtn.click(); } });
+  </script>
+</body>
+</html>

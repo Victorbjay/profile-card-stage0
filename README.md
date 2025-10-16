@@ -9,7 +9,7 @@ A modern, accessible, and fully responsive profile card component built with sem
 
 ## 🚀 Live Demo
 
-**[View Live Demo →](#)** *(Replace with your deployed URL)*
+**[View Live Demo →](https://profilecard-autotest.netlify.app)** 
 
 ## ✨ Features
 
