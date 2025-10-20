@@ -7,9 +7,18 @@ A modern, accessible, and fully responsive profile card component built with sem
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
-## 🚀 Live Demo
+## 🚀 Live Demo & Preview
 
 **[View Live Demo →](https://profilecard-autotest.netlify.app)** 
+
+### Profile Card
+![Profile Card](./images/home.png)
+
+### Contact Form
+![Contact Form](./images/contact.png)
+
+### About Me
+![About Me](./images/about.png)
 ## 📄 Pages
 
 This project consists of three pages:
